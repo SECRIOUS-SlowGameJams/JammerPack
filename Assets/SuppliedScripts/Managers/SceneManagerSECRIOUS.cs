@@ -55,14 +55,13 @@ public class SceneManagerSECRIOUS : MonoBehaviour
             //start any scene transition effects like fadein/out HERE
             quitSceneFX?.Invoke();
             yield return new WaitForSeconds(delaySeconds);
-        }
-
 #if UNITY_EDITOR
             EditorApplication.isPlaying = false;
 #else
             Application.Quit();
 #endif
         }
+   }
 
 
 

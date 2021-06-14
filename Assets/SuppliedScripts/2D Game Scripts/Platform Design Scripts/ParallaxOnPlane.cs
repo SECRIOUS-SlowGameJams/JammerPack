@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//This script implements a parallax effect, meaning that when the camera moves, elements move too with variable speeds respective to their distance from the camera.
+
 public class ParallaxOnPlane : MonoBehaviour
 {
     public float IntensityModifier;

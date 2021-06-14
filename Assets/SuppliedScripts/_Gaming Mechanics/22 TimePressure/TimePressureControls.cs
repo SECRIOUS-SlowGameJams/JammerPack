@@ -62,7 +62,7 @@ public class TimePressureControls : MonoBehaviour, ITimePressureListener
 
     void Update()
     {
-        CurrentTimeDisplay.text = (TimeConverter.FormatTimeSpan(timePressure.t));
+        CurrentTimeDisplay.text = (TimeConverter.FormatTimeSpan(timePressure.CurrentTime));
     }
 
 

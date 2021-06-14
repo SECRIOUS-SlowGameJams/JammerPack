@@ -8,195 +8,198 @@ using SECRIOUS.Utilities;
 using UnityEngine.Events;
 using TMPro;
 
-/*
- * 
- */
-
-public class ActionPointSystem : MonoBehaviour
+namespace SECRIOUS._Gaming_Mechanics
 {
-    /// Public Properties
-    [Header("Design data")]
-    public PlayerAction[] actions;
-    public int actionPointsPerTurn;
-    public bool isRegenerating;
-    public int actionPointsRestoredPerSecond;
+    /*
+     * 
+     */
+
+    public class ActionPointSystem : MonoBehaviour
+    {
+        /// Public Properties
+        public ActionPointPool pointPool;
+        public PlayerAction[] playerActions;
 
 
-    [Header("RunTime Data")]
-    public int actionPointsLeftThisTurn;
+       //useful if any event is triggered when when you have no action points, e.g. automated end of turn or temporary debuff etc
+        public event Action NoActionPointsLeftEvent;
+        public event Action ActionPointsResetEvent;
 
-
-  
-    [Header("UI display")]
-    [Tooltip("optional UI display")]
-    public TextMeshProUGUI actionPointsFrame;
-
-    public event Action NoActionPointsLeftEvent;
-    public event Action ActionPointsResetEvent;
-
-    /// Serialized Fields for Editor
+        /// Serialized Fields for Editor
 #pragma warning disable 0649
 
 #pragma warning restore 0649
 
-    private void Awake()
-    {
-        RefillActionPointPool();
-        AssignButtons();
-    }
-
-    private void Start()
-    {
-        SetRegeneration(isRegenerating);
-    }
-
-
-    public void Update()
-    {
-        TriggerAction();
-        UpdateActionState();
-    }
-
-    ///  Public Methods
-    ///  
-    void TriggerAction()
-    {
-        foreach (var item in actions)
+        private void Awake()
         {
-            if (Input.GetKeyDown(item.actionkey))
+        
+        }
+
+        private void Start()
+        {
+            pointPool.InitializeActionPointPool();
+            //if there is regeneration, initiate it
+            SetRegeneration(pointPool.isRegenerating);
+            //must be after awake so that the buttons can get hold of their component automatically
+            AssignButtons();
+        }
+
+        //for any of the actions that are triggered by UI, add the event to that UI element automatically.
+        void AssignButtons()
+        {
+            //conditionals included in data class
+            for (int i = 0; i < playerActions.Length; i++)
             {
-                if (item.canTrigger)
-                {
-                    DoAction(item);
-                }
-                else
-                { Debug.Log("Not enough actions points left"); }
+                playerActions[i].AssignButton();
             }
         }
-    }
 
-
-    public void DoAction(PlayerAction playerAction)
-    {
-        RemoveActionPoints(playerAction.actionPointCost);
-        playerAction.action.Invoke();
-    }
-
-
-    public void SetRegeneration(bool tof)
-    {
-        isRegenerating = tof;
-        if (isRegenerating)
+        //if you want to stop regerenation in runtime, call this with false value;
+        public void SetRegeneration(bool tof)
         {
-            InvokeRepeating("RegenActionPoints", Time.deltaTime, 1);
+            if (tof)
+            {
+                InvokeRepeating("RegenActionPoints", Time.deltaTime, 1);
+            }
+            else
+            {
+                CancelInvoke();
+            }
         }
-        else
+
+        void RegenActionPoints()
         {
-            CancelInvoke();
+            pointPool.AddActionPoints(pointPool.actionPointsRestoredPerSecond);
         }
-    }
-
-    void RegenActionPoints()
-    {
-        AddActionPoints(actionPointsRestoredPerSecond);
-    }
 
 
-    public void AddActionPoints(int actionPointsRestored)
-    {
-        actionPointsLeftThisTurn += actionPointsRestored;
-        actionPointsLeftThisTurn = Mathf.Clamp(actionPointsLeftThisTurn, 0, actionPointsPerTurn);
-        UpdateActionState();
-    }
-
-    public void RemoveActionPoints(int actionPointCost)
-    {
-        actionPointsLeftThisTurn -= actionPointCost;
-        CheckIfOutOfActionPoints();
-        UpdateActionState();
-    }
-
-    public void RefillActionPointPool()
-    {
-        actionPointsLeftThisTurn = actionPointsPerTurn;
-        UpdateActionState();
-        ActionPointsResetEvent?.Invoke();
-    }
-    public void EmptyActionPointPool()
-    {
-        actionPointsLeftThisTurn = 0;
-        UpdateActionState();
-    }
-
-    ///  Private Methods
-
-    void CheckIfOutOfActionPoints()
-    {
-        if (actionPointsLeftThisTurn == 0)
-            NoActionPointsLeftEvent?.Invoke();
-    }
-
-    void UpdateActionState()
-    {
-        foreach (var item in actions)
+        //listen to player input during update
+        public void Update()
         {
-            item.CheckIfOOM(actionPointsLeftThisTurn);
+            TriggerActionUsingKeys();
         }
-        UpdateUI();
-    }
 
-    void UpdateUI()
-    {
-        if (actionPointsFrame != null)
-            actionPointsFrame.text = "Action points left: " + actionPointsLeftThisTurn.ToString();
-    }
-
-    void AssignButtons()
-    {
-        for (int i = 0; i < actions.Length; i++)
+        ///  Public Methods
+        ///  
+        void TriggerActionUsingKeys()
         {
-            actions[i].button.onClick.AddListener(actions[i].DoAction);
+            //if the player hits any of the keys tied to an action
+            foreach (var item in playerActions)
+            {
+                if (Input.GetKeyDown(item.actionkey))
+                {
+                    //if I have enough action points left for that action (also calculated after each spending, this is for the first time per turn)
+                    if (item.CanTrigger(pointPool.actionPointsLeftThisTurn))
+                    {
+                        //do that action
+                        DoAction(item);
+                    }
+                    else
+                    { 
+                        //usually nothing happens, add anything you want, there is get a debug log fyi
+                        Debug.Log("Not enough actions points left"); }
+                }
+            }
         }
-        foreach (var item in actions)
+
+
+        public void DoAction(PlayerAction playerAction)
         {
-      //      item.button.onClick.AddListener(TriggerAction);
+            //remove the point cost
+            pointPool.RemoveActionPoints(playerAction.actionPointCost);
+            // I can never get in negative, but if I am exactly at 0, declare it
+            CheckIfOutOfActionPoints();
+            //and invoke the respective action
+            playerAction.action.Invoke();
+            //update my state
+            UpdateActionState();
+
+            void CheckIfOutOfActionPoints()
+            {
+                if (pointPool.actionPointsLeftThisTurn == 0)
+                {
+                    Debug.Log("Player " + this.gameObject + "is out of points.");
+                    NoActionPointsLeftEvent?.Invoke();
+                }
+            }
         }
+
+        public void ResetPoints()
+        {
+            pointPool.RefillActionPointPool();
+            Debug.Log("Player " + this.gameObject + "refilled the point pool.");
+            ActionPointsResetEvent?.Invoke();
+            UpdateActionState();
+        }
+
+        
+       ///  Private Methods
+
+        void UpdateActionState()
+        {
+            foreach (var item in playerActions)
+            {
+                //this sets both the flag (which I dont use now) and the UI controls
+                item.CanTrigger(pointPool.actionPointsLeftThisTurn);
+            }
+            //for use with the UI diplayer
+            SendMessage("OnStateUpdate", SendMessageOptions.DontRequireReceiver);
+        }
+
     }
 
+    [Serializable]
+    public class ActionPointPool
+        {
+
+        [Header("Design data")]
+        public int actionPointPoolSize;
+        public bool isRegenerating;
+        public int actionPointsRestoredPerSecond;
+
+        [Header("RunTime Data")]
+        public int actionPointsLeftThisTurn;
+
+
+
+
+        public void InitializeActionPointPool()
+        {
+            actionPointsLeftThisTurn = actionPointPoolSize;
+        }
+
+
+        public void AddActionPoints(int actionPointsRestored)
+        {
+            actionPointsLeftThisTurn += actionPointsRestored;
+            actionPointsLeftThisTurn = Mathf.Clamp(actionPointsLeftThisTurn, 0, actionPointPoolSize);
+        }
+
+
+        public void RemoveActionPoints(int actionPointCost)
+        {
+            actionPointsLeftThisTurn -= actionPointCost;
+            actionPointsLeftThisTurn = Mathf.Clamp(actionPointsLeftThisTurn, 0, actionPointPoolSize);
+        }
+
+        public void RefillActionPointPool()
+        {
+            actionPointsLeftThisTurn = actionPointPoolSize;
+        }
+
+
+        public void EmptyActionPointPool()
+        {
+            actionPointsLeftThisTurn = 0;
+        }
+
+
+        public void ChangePoolSize(int additionOrRemoval)
+        {
+            actionPointPoolSize += additionOrRemoval;
+        }
+        
+
+    }
 
 }
-
-
-[Serializable]
-public class PlayerAction
-{
-    public string actionName;
-    public int actionPointCost;
-
-    public UnityEvent action;
-    [Space]
-
-    public bool executeWithKeys;
-    public KeyCode actionkey;
-
-    public bool executeWithButton;
-    public Button button;
-
-    public bool canTrigger;
-
-    public void CheckIfOOM(float playerActionPointsInPool)
-    {
-        canTrigger = (playerActionPointsInPool >= actionPointCost);
-        if (button != null)
-            button.interactable = canTrigger;
-    }
-
-    public void DoAction()
-    {
-        //RemoveActionPoints(playerAction.actionPointCost);
-        Debug.Log("2");
-       // playerAction.action.Invoke();
-    }
-}
-
-

@@ -4,6 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using SECRIOUS.Utilities;
 
+/// <summary>
+/// This script implements a camera zoom in fixed increments. 
+/// This is useful for having predefined zoom views for your camera. 
+/// If you'd like a smoother camera zoom, please set the zoom levels to a high enough value for your scene set-up.
+/// This script is set up for an orthographic camera. 
+/// You can apply the same logic to a perspective camera by substituting orthographic size with field of view.
+/// </summary>
+
+
+
 [RequireComponent(typeof(Camera))]
 public class CameraSmartZoom : MonoBehaviour
 {

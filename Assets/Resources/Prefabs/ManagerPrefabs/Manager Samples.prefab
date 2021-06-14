@@ -149,6 +149,7 @@ MonoBehaviour:
   spawnDistanceFromCamera: 0
   ClickParticleSystem: {fileID: 0}
   TrailParticleSystem: {fileID: 0}
+  debugMode: 0
 --- !u!1 &674018771900647830
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,7 +210,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &562204474784478372
 Transform:
   m_ObjectHideFlags: 0

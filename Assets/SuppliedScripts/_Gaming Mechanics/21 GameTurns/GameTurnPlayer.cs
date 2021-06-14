@@ -5,104 +5,108 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class GameTurnPlayer : MonoBehaviour
+namespace SECRIOUS._Gaming_Mechanics
 {
 
-    public GameTurnPlayerState currentState;
-
-    public ActiveTurnState activeTurnState = new ActiveTurnState();
-    public InactiveTurnState inActiveTurnState = new InactiveTurnState();
-
-    public Button endofTurnButton;
-
-    public EndOfTurnEvent declareEndOfTurnEvent;
-
-
-
-    // Start is called before the first frame update
-    void Awake()
+    public class GameTurnPlayer : MonoBehaviour
     {
-       endofTurnButton.onClick.AddListener(DeclareEndOfTurn);
+
+        public GameTurnPlayerState currentState;
+
+        public ActiveTurnState activeTurnState = new ActiveTurnState();
+        public InactiveTurnState inActiveTurnState = new InactiveTurnState();
+
+        public Button endofTurnButton;
+
+        public EndOfTurnEvent declareEndOfTurnEvent;
+
+
+
+        // Start is called before the first frame update
+        void Awake()
+        {
+            endofTurnButton.onClick.AddListener(DeclareEndOfTurn);
+        }
+
+        private void Start()
+        {
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
+
+        public void InitializeTurn()
+        {
+            TransitionToState(activeTurnState);
+        }
+
+
+        public void DeclareEndOfTurn()
+        {
+            TransitionToState(inActiveTurnState);
+            declareEndOfTurnEvent?.Invoke(this);
+        }
+
+
+        public void TransitionToState(GameTurnPlayerState state)
+        {
+            currentState = state;
+            state.EnterState(this);
+        }
+
+
     }
 
-    private void Start()
+    [Serializable]
+    public class EndOfTurnEvent : UnityEvent<GameTurnPlayer>
     {
+
     }
 
-    // Update is called once per frame
-    void Update()
+    [Serializable]
+    public abstract class GameTurnPlayerState
     {
-        
+        public ActionPointSystem actionPointsMechanic;
+        public virtual void EnterState(GameTurnPlayer playerStateController)
+        {
+            actionPointsMechanic = playerStateController.GetComponent<ActionPointSystem>();
+        }
+
+        public abstract void Update(GameTurnPlayer playerStateController);
     }
 
-    public void InitializeTurn()
+    public class ActiveTurnState : GameTurnPlayerState
     {
-        TransitionToState(activeTurnState);
+        public override void EnterState(GameTurnPlayer playerStateController)
+        {
+            //set up things here
+            base.EnterState(playerStateController);
+            actionPointsMechanic.pointPool.RefillActionPointPool();
+            playerStateController.endofTurnButton.interactable = true;
+        }
+
+
+        public override void Update(GameTurnPlayer playerStateController)
+        {
+            //can do things here
+        }
     }
 
-
-    public void DeclareEndOfTurn()
+    public class InactiveTurnState : GameTurnPlayerState
     {
-        TransitionToState(inActiveTurnState);
-        declareEndOfTurnEvent?.Invoke(this);
-    }
+        public override void EnterState(GameTurnPlayer playerStateController)
+        {
+            base.EnterState(playerStateController);
+            actionPointsMechanic.pointPool.EmptyActionPointPool();
+            playerStateController.endofTurnButton.interactable = false;
+        }
 
-
-    public void TransitionToState(GameTurnPlayerState state)
-    {
-        currentState = state;
-        state.EnterState(this);
-    }
-
-
-}
-
-[Serializable]
-public class EndOfTurnEvent : UnityEvent<GameTurnPlayer>
-{
-
-}
-
-[Serializable]
-public abstract class GameTurnPlayerState
-{
-    public ActionPointSystem actionPointsMechanic;
-    public virtual void EnterState(GameTurnPlayer playerStateController)
-    {
-        actionPointsMechanic = playerStateController.GetComponent<ActionPointSystem>();
-    }
-    
-    public abstract void Update(GameTurnPlayer playerStateController);
-}
-
-public class ActiveTurnState : GameTurnPlayerState
-{
-    public override void EnterState(GameTurnPlayer playerStateController)
-    {
-       //set up things here
-        base.EnterState(playerStateController);
-        actionPointsMechanic.RefillActionPointPool();
-        playerStateController.endofTurnButton.interactable = true;
-    }
-
-
-    public override void Update(GameTurnPlayer playerStateController)
-    {
-        //can do things here
-    }
-}
-
-public class InactiveTurnState : GameTurnPlayerState
-{
-    public override void EnterState(GameTurnPlayer playerStateController)
-    {
-        base.EnterState(playerStateController);
-        actionPointsMechanic.EmptyActionPointPool();
-        playerStateController.endofTurnButton.interactable = false;
-    }
-
-    public override void Update(GameTurnPlayer playerStateController)
-    {
-        //can NOT do things here
+        public override void Update(GameTurnPlayer playerStateController)
+        {
+            //can NOT do things here
+        }
     }
 }

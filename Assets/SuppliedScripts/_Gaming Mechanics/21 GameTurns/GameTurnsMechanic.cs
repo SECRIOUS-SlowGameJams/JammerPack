@@ -7,6 +7,8 @@ using UnityEngine.EventSystems;
 using SECRIOUS.Utilities;
 using TMPro;
 
+namespace SECRIOUS._Gaming_Mechanics
+{ 
 /*
  * 
  */
@@ -106,3 +108,4 @@ using TMPro;
 
 
     }
+}

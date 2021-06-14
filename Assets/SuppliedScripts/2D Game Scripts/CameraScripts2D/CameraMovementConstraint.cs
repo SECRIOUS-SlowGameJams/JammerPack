@@ -6,8 +6,11 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 /*
- * 
+ * Use this script if you'd like to set boundaries to the free movement of the camera. 
+ * This script is designed to received a sprite texture as the boundary frame (e.g. if you'd like to restrict camera movement and view only within your background texture). 
+ * If you'd like to input Unity coordinates, disable all calculations in the script and input the values manually under safeMin and safeMax
  */
+
 
 [RequireComponent(typeof(Camera))]
 public class CameraMovementConstraint : MonoBehaviour
@@ -23,8 +26,10 @@ public class CameraMovementConstraint : MonoBehaviour
         float displayAspectRatioWH;
         Bounds fullViewAreaBounds;
 
-        Vector2 safeMin;
-        Vector2 safeMax;
+    [SerializeField]
+    Vector2 safeMin;
+    [SerializeField]
+    Vector2 safeMax;
         Camera Camera;
         /// Serialized Fields for Editor
 #pragma warning disable 0649
@@ -72,7 +77,6 @@ public class CameraMovementConstraint : MonoBehaviour
 
         Vector3 ConstrainMovement(Vector3 potentialPosition)
         {
-      
         float x, y;
         Vector3 finalPosition = transform.position;
 
@@ -106,7 +110,8 @@ public class CameraMovementConstraint : MonoBehaviour
         Camera.orthographicSize = fullViewAreaBounds.size.y / 2;
     }
 
-    //for use in editor view -- this thing doesn't draw the screen height properly from the editor...
+
+    //for use in editor view -- this doesn't draw the screen height properly from the editor...
     [ContextMenu("ZoomToFullViewWidth")]
     void ZoomToFullViewWidth()
     {

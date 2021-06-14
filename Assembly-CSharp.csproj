@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{B116E0E6-6C53-9CD0-53F3-007186FB90DB}</ProjectGuid>
+    <ProjectGuid>{0A63C78E-5E85-DCF5-403E-481C92F568A5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -106,6 +106,7 @@
     <Compile Include="Assets\SuppliedScripts\Managers\SceneManagerSECRIOUS.cs" />
     <Compile Include="Assets\SuppliedScripts\UI Scripts\AutoHideTimedUI.cs" />
     <Compile Include="Assets\SuppliedScripts\UI Scripts\ButtonAudioVisualResponse.cs" />
+    <Compile Include="Assets\SuppliedScripts\UI Scripts\ButtonLogicListener.cs" />
     <Compile Include="Assets\SuppliedScripts\UI Scripts\ButtonURLink.cs" />
     <Compile Include="Assets\SuppliedScripts\UI Scripts\CanvasGroupFader.cs" />
     <Compile Include="Assets\SuppliedScripts\UI Scripts\ClickButtonWithKeys.cs" />
@@ -121,10 +122,13 @@
     <Compile Include="Assets\SuppliedScripts\UtilityScripts\FetchBasedOnHierarchy.cs" />
     <Compile Include="Assets\SuppliedScripts\UtilityScripts\MathUtilityExtension.cs" />
     <Compile Include="Assets\SuppliedScripts\UtilityScripts\TimeConverter.cs" />
-    <Compile Include="Assets\SuppliedScripts\_Gaming Mechanics\19 LevelUp\LevelingFeature.cs" />
+    <Compile Include="Assets\SuppliedScripts\_Gaming Mechanics\19 LevelUp\LevelingSystem.cs" />
     <Compile Include="Assets\SuppliedScripts\_Gaming Mechanics\19 LevelUp\LevelingSystemScriptableObj.cs" />
-    <Compile Include="Assets\SuppliedScripts\_Gaming Mechanics\20 ActionsPoints\ActionButtonMechanic.cs" />
+    <Compile Include="Assets\SuppliedScripts\_Gaming Mechanics\19 LevelUp\LevelingSystemUI.cs" />
     <Compile Include="Assets\SuppliedScripts\_Gaming Mechanics\20 ActionsPoints\ActionPointSystem.cs" />
+    <Compile Include="Assets\SuppliedScripts\_Gaming Mechanics\20 ActionsPoints\ActionPointSystemUI.cs" />
+    <Compile Include="Assets\SuppliedScripts\_Gaming Mechanics\20 ActionsPoints\ActionTriggerButton.cs" />
+    <Compile Include="Assets\SuppliedScripts\_Gaming Mechanics\20 ActionsPoints\PlayerActionClass.cs" />
     <Compile Include="Assets\SuppliedScripts\_Gaming Mechanics\21 GameTurns\GameTurnPlayer.cs" />
     <Compile Include="Assets\SuppliedScripts\_Gaming Mechanics\21 GameTurns\GameTurnsMechanic.cs" />
     <Compile Include="Assets\SuppliedScripts\_Gaming Mechanics\22 TimePressure\TimePressure.cs" />
@@ -354,34 +358,34 @@
       <HintPath>C:/_UnityProjects/2019.4.4f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
     <Reference Include="Antlr4.Runtime.Standard">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/PackageCache/dev.yarnspinner.unity@e050b45804/Runtime/DLLs/Antlr4.Runtime.Standard.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/PackageCache/dev.yarnspinner.unity@e050b45804/Runtime/DLLs/Antlr4.Runtime.Standard.dll</HintPath>
     </Reference>
     <Reference Include="CsvHelper">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/PackageCache/dev.yarnspinner.unity@e050b45804/Runtime/DLLs/CsvHelper.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/PackageCache/dev.yarnspinner.unity@e050b45804/Runtime/DLLs/CsvHelper.dll</HintPath>
     </Reference>
     <Reference Include="Google.Protobuf">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/PackageCache/dev.yarnspinner.unity@e050b45804/Runtime/DLLs/Google.Protobuf.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/PackageCache/dev.yarnspinner.unity@e050b45804/Runtime/DLLs/Google.Protobuf.dll</HintPath>
     </Reference>
     <Reference Include="System.Buffers">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/PackageCache/dev.yarnspinner.unity@e050b45804/Runtime/DLLs/System.Buffers.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/PackageCache/dev.yarnspinner.unity@e050b45804/Runtime/DLLs/System.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="System.Memory">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/PackageCache/dev.yarnspinner.unity@e050b45804/Runtime/DLLs/System.Memory.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/PackageCache/dev.yarnspinner.unity@e050b45804/Runtime/DLLs/System.Memory.dll</HintPath>
     </Reference>
     <Reference Include="System.Numerics.Vectors">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/PackageCache/dev.yarnspinner.unity@e050b45804/Runtime/DLLs/System.Numerics.Vectors.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/PackageCache/dev.yarnspinner.unity@e050b45804/Runtime/DLLs/System.Numerics.Vectors.dll</HintPath>
     </Reference>
     <Reference Include="System.Reflection.TypeExtensions">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/PackageCache/dev.yarnspinner.unity@e050b45804/Runtime/DLLs/System.Reflection.TypeExtensions.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/PackageCache/dev.yarnspinner.unity@e050b45804/Runtime/DLLs/System.Reflection.TypeExtensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/PackageCache/dev.yarnspinner.unity@e050b45804/Runtime/DLLs/System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/PackageCache/dev.yarnspinner.unity@e050b45804/Runtime/DLLs/System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="YarnSpinner.Compiler">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/PackageCache/dev.yarnspinner.unity@e050b45804/Runtime/DLLs/YarnSpinner.Compiler.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/PackageCache/dev.yarnspinner.unity@e050b45804/Runtime/DLLs/YarnSpinner.Compiler.dll</HintPath>
     </Reference>
     <Reference Include="YarnSpinner">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/PackageCache/dev.yarnspinner.unity@e050b45804/Runtime/DLLs/YarnSpinner.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/PackageCache/dev.yarnspinner.unity@e050b45804/Runtime/DLLs/YarnSpinner.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/_UnityProjects/2019.4.4f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -738,91 +742,100 @@
       <HintPath>C:/_UnityProjects/2019.4.4f1/Editor/Data/MonoBleedingEdge/lib/mono/unityscript/Boo.Lang.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Runtime">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.PixelPerfect.Editor">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="YarnSpinner.Unity.Editor">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/ScriptAssemblies/YarnSpinner.Unity.Editor.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/ScriptAssemblies/YarnSpinner.Unity.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.SpriteShape.Editor">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/ScriptAssemblies/Unity.2D.SpriteShape.Editor.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/ScriptAssemblies/Unity.2D.SpriteShape.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Recorder.Editor">
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/ScriptAssemblies/Unity.Recorder.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Path.Editor">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/ScriptAssemblies/Unity.2D.Path.Editor.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/ScriptAssemblies/Unity.2D.Path.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Recorder">
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/ScriptAssemblies/Unity.Recorder.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Triangle.Runtime">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/ScriptAssemblies/Unity.2D.Animation.Triangle.Runtime.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/ScriptAssemblies/Unity.2D.Animation.Triangle.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="PsdPlugin">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/ScriptAssemblies/PsdPlugin.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/ScriptAssemblies/PsdPlugin.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Recorder.Base">
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/ScriptAssemblies/Unity.Recorder.Base.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Psdimporter.Editor">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/ScriptAssemblies/Unity.2D.Psdimporter.Editor.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/ScriptAssemblies/Unity.2D.Psdimporter.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InternalAPIEngineBridge.001">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.001.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.001.dll</HintPath>
     </Reference>
     <Reference Include="YarnSpinner.Unity">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/ScriptAssemblies/YarnSpinner.Unity.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/ScriptAssemblies/YarnSpinner.Unity.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Common.Runtime">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/ScriptAssemblies/Unity.2D.Common.Runtime.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/ScriptAssemblies/Unity.2D.Common.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.SpriteShape.Runtime">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/ScriptAssemblies/Unity.2D.SpriteShape.Runtime.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/ScriptAssemblies/Unity.2D.SpriteShape.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.PixelPerfect">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Editor">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics.Editor">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Common.Editor">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/ScriptAssemblies/Unity.2D.Common.Editor.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/ScriptAssemblies/Unity.2D.Common.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InternalAPIEditorBridge.001">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>D:/Unity/SECRIOUS_2D_ProjectTemplate/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>D:/Dropbox/1_Unity Projects/_Github cloned/JammerPack/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup></ItemGroup>

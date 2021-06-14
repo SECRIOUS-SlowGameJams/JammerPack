@@ -11,7 +11,7 @@ public class CustomMadeWindow : EditorWindow
     float myFloat = 1.23f;
 
     // Add menu item named "My Window" to the Window menu
-    [MenuItem("Window/Sample-made custom window")]
+    [MenuItem("Window/Sample custom-made window")]
     public static void ShowWindow()
     {
         //Show existing window instance. If one doesn't exist, make one.

@@ -5,11 +5,14 @@ using UnityEngine;
 
 public class CameraFreeMovement2D : MonoBehaviour
 {
+    [SerializeField]
+    bool canMove;
     public float moveSpeed;
     public MovementAxis movementAxis;
     // Update is called once per frame
     void Update()
     {
+        if (canMove)
         Move();
     }
 
@@ -37,6 +40,11 @@ public class CameraFreeMovement2D : MonoBehaviour
             default:
                 return Vector2.zero;
         }
+    }
+    
+    public void ToggleCameraMovement (bool tof)
+    {
+        canMove = tof;
     }
 
 }

@@ -1358,17 +1358,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionPointsMechanic: {fileID: 1168434483}
-  playerAction:
-    actionName: 
-    actionPointCost: 5
-    action:
-      m_PersistentCalls:
-        m_Calls: []
-    executeWithKeys: 0
-    actionkey: 0
-    executeWithButton: 0
-    button: {fileID: 0}
-    canTrigger: 0
 --- !u!114 &36358873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1958,28 +1947,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionPointsMechanic: {fileID: 824487491}
-  playerAction:
-    actionName: 
-    actionPointCost: 1
-    action:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 74722054}
-          m_MethodName: Roll
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    executeWithKeys: 0
-    actionkey: 13
-    executeWithButton: 0
-    button: {fileID: 0}
-    canTrigger: 0
 --- !u!114 &74722058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6349,17 +6316,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionPointsMechanic: {fileID: 1168434483}
-  playerAction:
-    actionName: 
-    actionPointCost: 3
-    action:
-      m_PersistentCalls:
-        m_Calls: []
-    executeWithKeys: 0
-    actionkey: 0
-    executeWithButton: 0
-    button: {fileID: 0}
-    canTrigger: 0
 --- !u!114 &280749846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9660,28 +9616,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionPointsMechanic: {fileID: 1772635831}
-  playerAction:
-    actionName: 
-    actionPointCost: 1
-    action:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 573502127}
-          m_MethodName: Roll
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    executeWithKeys: 0
-    actionkey: 13
-    executeWithButton: 0
-    button: {fileID: 0}
-    canTrigger: 0
 --- !u!114 &573502131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10121,6 +10055,8 @@ GameObject:
   m_Component:
   - component: {fileID: 627596299}
   - component: {fileID: 627596300}
+  - component: {fileID: 627596301}
+  - component: {fileID: 627596302}
   m_Layer: 5
   m_Name: PlayerC
   m_TagString: Untagged
@@ -10161,12 +10097,109 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f389c37a671ed2847980ebc7288d484a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actions: []
-  actionPointsPerTurn: 15
-  isRegenerating: 1
-  actionPointsRestoredPerSecond: 1
-  actionPointsLeftThisTurn: 0
+  pointPool:
+    actionPointPoolSize: 15
+    isRegenerating: 1
+    actionPointsRestoredPerSecond: 1
+    actionPointsLeftThisTurn: 0
+  playerActions:
+  - actionName: Sword
+    actionPointCost: 5
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 627596302}
+          m_MethodName: TakeDamage
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 1
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    executeWithKeys: 0
+    actionkey: 0
+    executeWithButton: 1
+    button: {fileID: 951844716}
+    canTrigger: 0
+  - actionName: Shield
+    actionPointCost: 3
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 627596302}
+          m_MethodName: TakeDamage
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    executeWithKeys: 0
+    actionkey: 0
+    executeWithButton: 1
+    button: {fileID: 711979258}
+    canTrigger: 0
+  - actionName: Potion
+    actionPointCost: 2
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 627596302}
+          m_MethodName: RegainHealth
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 1
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    executeWithKeys: 0
+    actionkey: 0
+    executeWithButton: 1
+    button: {fileID: 1525556367}
+    canTrigger: 0
+--- !u!114 &627596301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 627596298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f9ed7b2888ef474dbc58531f90d09da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   actionPointsFrame: {fileID: 215336277}
+--- !u!114 &627596302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 627596298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 176794e34939e33418ccd457a1992467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  competitivePlayer: {fileID: 0}
+  keyValueChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  keyvalueRange: {x: 0, y: 10}
+  currentValue: 0
+  startsWithMaxValue: 1
+  maxIsCap: 0
+  minIsCap: 0
 --- !u!1 &628576152
 GameObject:
   m_ObjectHideFlags: 0
@@ -10407,7 +10440,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1345960500}
-        m_MethodName: RefillActionPointPool
+        m_MethodName: ResetPoints
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10903,17 +10936,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionPointsMechanic: {fileID: 627596300}
-  playerAction:
-    actionName: 
-    actionPointCost: 3
-    action:
-      m_PersistentCalls:
-        m_Calls: []
-    executeWithKeys: 0
-    actionkey: 0
-    executeWithButton: 0
-    button: {fileID: 0}
-    canTrigger: 0
 --- !u!114 &711979259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13029,12 +13051,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f389c37a671ed2847980ebc7288d484a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actions: []
-  actionPointsPerTurn: 1
-  isRegenerating: 0
-  actionPointsRestoredPerSecond: 0
-  actionPointsLeftThisTurn: 0
-  actionPointsFrame: {fileID: 1312619337}
+  pointPool:
+    actionPointPoolSize: 0
+    isRegenerating: 0
+    actionPointsRestoredPerSecond: 0
+    actionPointsLeftThisTurn: 0
+  playerActions: []
 --- !u!1 &826929927
 GameObject:
   m_ObjectHideFlags: 0
@@ -14773,17 +14795,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionPointsMechanic: {fileID: 627596300}
-  playerAction:
-    actionName: 
-    actionPointCost: 5
-    action:
-      m_PersistentCalls:
-        m_Calls: []
-    executeWithKeys: 0
-    actionkey: 0
-    executeWithButton: 0
-    button: {fileID: 0}
-    canTrigger: 0
 --- !u!114 &951844717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17550,6 +17561,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1168434482}
   - component: {fileID: 1168434483}
+  - component: {fileID: 1168434484}
+  - component: {fileID: 1168434485}
   m_Layer: 5
   m_Name: PlayerB
   m_TagString: Untagged
@@ -17590,12 +17603,109 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f389c37a671ed2847980ebc7288d484a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actions: []
-  actionPointsPerTurn: 15
-  isRegenerating: 0
-  actionPointsRestoredPerSecond: 0
-  actionPointsLeftThisTurn: 0
+  pointPool:
+    actionPointPoolSize: 15
+    isRegenerating: 0
+    actionPointsRestoredPerSecond: 0
+    actionPointsLeftThisTurn: 0
+  playerActions:
+  - actionName: Sword
+    actionPointCost: 5
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1168434485}
+          m_MethodName: TakeDamage
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 1
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    executeWithKeys: 0
+    actionkey: 0
+    executeWithButton: 1
+    button: {fileID: 36358872}
+    canTrigger: 0
+  - actionName: Shield
+    actionPointCost: 3
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1168434485}
+          m_MethodName: TakeDamage
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    executeWithKeys: 0
+    actionkey: 0
+    executeWithButton: 1
+    button: {fileID: 280749845}
+    canTrigger: 0
+  - actionName: Potion
+    actionPointCost: 2
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1168434485}
+          m_MethodName: RegainHealth
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 1
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    executeWithKeys: 0
+    actionkey: 0
+    executeWithButton: 1
+    button: {fileID: 2052305579}
+    canTrigger: 0
+--- !u!114 &1168434484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168434481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f9ed7b2888ef474dbc58531f90d09da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   actionPointsFrame: {fileID: 482785797}
+--- !u!114 &1168434485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168434481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 176794e34939e33418ccd457a1992467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  competitivePlayer: {fileID: 0}
+  keyValueChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  keyvalueRange: {x: 0, y: 10}
+  currentValue: 0
+  startsWithMaxValue: 1
+  maxIsCap: 0
+  minIsCap: 0
 --- !u!1001 &1172102735
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21204,6 +21314,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1345960498}
   - component: {fileID: 1345960500}
+  - component: {fileID: 1345960501}
+  - component: {fileID: 1345960499}
   m_Layer: 5
   m_Name: PlayerA
   m_TagString: Untagged
@@ -21232,6 +21344,26 @@ RectTransform:
   m_AnchoredPosition: {x: -705.42, y: -0.000022888}
   m_SizeDelta: {x: 389.82025, y: 651.6117}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1345960499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1345960497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdd6850044e5a9841b3c2255c44fb560, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DieSetScriptableObj: {fileID: 11400000, guid: 1aa2f0a0e05d6154cbecbd7e2f354b5e,
+    type: 2}
+  dieType: 6
+  die: {fileID: 6735477707646488496}
+  rollResult: 0
+  rollResultFrame: {fileID: 6735477705568400218}
+  image: {fileID: 0}
+  dropdown: {fileID: 0}
 --- !u!114 &1345960500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21244,13 +21376,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f389c37a671ed2847980ebc7288d484a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actions:
-  - actionName: 
+  pointPool:
+    actionPointPoolSize: 5
+    isRegenerating: 0
+    actionPointsRestoredPerSecond: 0
+    actionPointsLeftThisTurn: 0
+  playerActions:
+  - actionName: Roll a die
     actionPointCost: 1
     action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6735477707646488499}
+        - m_Target: {fileID: 1345960499}
           m_MethodName: Roll
           m_Mode: 1
           m_Arguments:
@@ -21264,12 +21401,20 @@ MonoBehaviour:
     executeWithKeys: 1
     actionkey: 114
     executeWithButton: 1
-    button: {fileID: 6735477707646488496}
+    button: {fileID: 6735477707646488513}
     canTrigger: 0
-  actionPointsPerTurn: 1
-  isRegenerating: 0
-  actionPointsRestoredPerSecond: 0
-  actionPointsLeftThisTurn: 0
+--- !u!114 &1345960501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1345960497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f9ed7b2888ef474dbc58531f90d09da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   actionPointsFrame: {fileID: 1768530552}
 --- !u!1 &1346993603
 GameObject:
@@ -22695,17 +22840,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionPointsMechanic: {fileID: 627596300}
-  playerAction:
-    actionName: 
-    actionPointCost: 2
-    action:
-      m_PersistentCalls:
-        m_Calls: []
-    executeWithKeys: 0
-    actionkey: 0
-    executeWithButton: 0
-    button: {fileID: 0}
-    canTrigger: 0
 --- !u!114 &1525556368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22908,7 +23042,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1168434483}
-        m_MethodName: RefillActionPointPool
+        m_MethodName: ResetPoints
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -25450,6 +25584,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1771081601}
   - component: {fileID: 1771081600}
+  - component: {fileID: 1771081602}
   m_Layer: 0
   m_Name: LevelingUpPlayer
   m_TagString: Untagged
@@ -25469,7 +25604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7231e726532b092488e8e165821d450f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelingSystem: {fileID: 11400000, guid: 8ae1829b5b895b047a678fcb0e1881d7, type: 2}
+  LS_SO: {fileID: 11400000, guid: 8ae1829b5b895b047a678fcb0e1881d7, type: 2}
   lvlUpEvent:
     m_PersistentCalls:
       m_Calls:
@@ -25498,9 +25633,7 @@ MonoBehaviour:
   currentXP: 1
   currentLevel: 
   hasMaxedOut: 0
-  lvlFrame: {fileID: 1296755853}
-  xpFrame: {fileID: 1678397674}
-  rankStyleDisplay: 1
+  shouldCapXP: 0
 --- !u!4 &1771081601
 Transform:
   m_ObjectHideFlags: 0
@@ -25515,6 +25648,22 @@ Transform:
   m_Father: {fileID: 426962121}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1771081602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771081599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c48676cc3a42224da49a426be73e094, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lvlFrame: {fileID: 1296755853}
+  xpFrame: {fileID: 1678397674}
+  displayXpTillLastLvl: 1
+  displayLevelAsRank: 1
 --- !u!1 &1772635829
 GameObject:
   m_ObjectHideFlags: 0
@@ -25565,12 +25714,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f389c37a671ed2847980ebc7288d484a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actions: []
-  actionPointsPerTurn: 1
-  isRegenerating: 0
-  actionPointsRestoredPerSecond: 0
-  actionPointsLeftThisTurn: 0
-  actionPointsFrame: {fileID: 1913392908}
+  pointPool:
+    actionPointPoolSize: 0
+    isRegenerating: 0
+    actionPointsRestoredPerSecond: 0
+    actionPointsLeftThisTurn: 0
+  playerActions: []
 --- !u!114 &1772635832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26819,28 +26968,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionPointsMechanic: {fileID: 1895101915}
-  playerAction:
-    actionName: 
-    actionPointCost: 1
-    action:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1860023724}
-          m_MethodName: Roll
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    executeWithKeys: 0
-    actionkey: 13
-    executeWithButton: 0
-    button: {fileID: 0}
-    canTrigger: 0
 --- !u!114 &1860023728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27467,12 +27594,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f389c37a671ed2847980ebc7288d484a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actions: []
-  actionPointsPerTurn: 1
-  isRegenerating: 0
-  actionPointsRestoredPerSecond: 0
-  actionPointsLeftThisTurn: 0
-  actionPointsFrame: {fileID: 1018541587}
+  pointPool:
+    actionPointPoolSize: 0
+    isRegenerating: 0
+    actionPointsRestoredPerSecond: 0
+    actionPointsLeftThisTurn: 0
+  playerActions: []
 --- !u!1 &1913392907
 GameObject:
   m_ObjectHideFlags: 0
@@ -28940,6 +29067,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2026527062}
   - component: {fileID: 2026527061}
+  - component: {fileID: 2026527063}
   m_Layer: 0
   m_Name: LevelingUpPlayer
   m_TagString: Untagged
@@ -28959,7 +29087,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7231e726532b092488e8e165821d450f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelingSystem: {fileID: 11400000, guid: fd11f7cbbff3a074fbd4614ccdcd0fc4, type: 2}
+  LS_SO: {fileID: 11400000, guid: fd11f7cbbff3a074fbd4614ccdcd0fc4, type: 2}
   lvlUpEvent:
     m_PersistentCalls:
       m_Calls:
@@ -28977,9 +29105,7 @@ MonoBehaviour:
   currentXP: 0
   currentLevel: 
   hasMaxedOut: 0
-  lvlFrame: {fileID: 765059507}
-  xpFrame: {fileID: 135877498}
-  rankStyleDisplay: 0
+  shouldCapXP: 0
 --- !u!4 &2026527062
 Transform:
   m_ObjectHideFlags: 0
@@ -28994,6 +29120,22 @@ Transform:
   m_Father: {fileID: 1992795669}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2026527063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026527060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c48676cc3a42224da49a426be73e094, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lvlFrame: {fileID: 765059507}
+  xpFrame: {fileID: 135877498}
+  displayXpTillLastLvl: 0
+  displayLevelAsRank: 0
 --- !u!1 &2041286281
 GameObject:
   m_ObjectHideFlags: 0
@@ -29248,17 +29390,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionPointsMechanic: {fileID: 1168434483}
-  playerAction:
-    actionName: 
-    actionPointCost: 2
-    action:
-      m_PersistentCalls:
-        m_Calls: []
-    executeWithKeys: 0
-    actionkey: 0
-    executeWithButton: 0
-    button: {fileID: 0}
-    canTrigger: 0
 --- !u!114 &2052305580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33484,26 +33615,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6735477707646488510}
   m_CullTransparentMesh: 0
---- !u!114 &6735477707646488499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6735477707646488510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdd6850044e5a9841b3c2255c44fb560, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DieSetScriptableObj: {fileID: 11400000, guid: 1aa2f0a0e05d6154cbecbd7e2f354b5e,
-    type: 2}
-  dieType: 6
-  die: {fileID: 6735477707646488496}
-  rollResult: 0
-  rollResultFrame: {fileID: 6735477705568400218}
-  image: {fileID: 0}
-  dropdown: {fileID: 0}
 --- !u!1 &6735477707646488510
 GameObject:
   m_ObjectHideFlags: 0
@@ -33516,8 +33627,8 @@ GameObject:
   - component: {fileID: 6735477707646488498}
   - component: {fileID: 6735477707646488497}
   - component: {fileID: 6735477707646488496}
-  - component: {fileID: 6735477707646488499}
   - component: {fileID: 6735477707646488512}
+  - component: {fileID: 6735477707646488513}
   m_Layer: 5
   m_Name: RollDieButton
   m_TagString: Untagged
@@ -33559,3 +33670,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AspectMode: 1
   m_AspectRatio: 1
+--- !u!114 &6735477707646488513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6735477707646488510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e955f4f8c2a60b14ea77e01bd49b8225, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionPointsMechanic: {fileID: 1345960500}

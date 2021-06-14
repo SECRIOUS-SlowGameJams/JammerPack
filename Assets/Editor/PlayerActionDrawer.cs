@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.UIElements;
+using SECRIOUS._Gaming_Mechanics;
 
 [CustomPropertyDrawer(typeof(PlayerAction))]
 public class PlayerActionDrawer : PropertyDrawer
@@ -17,9 +18,9 @@ public class PlayerActionDrawer : PropertyDrawer
     SerializedProperty canTrigger;
 
     float totalHeight;
-    Color color = Color.HSVToRGB(Random.Range(0.0f, 1.0f), Random.Range(0.4f, 0.6f), Random.Range(0.8f, 1.0f));
-    Color defaultColor;
-    
+    //Color color = Color.HSVToRGB(Random.Range(0.0f, 1.0f), Random.Range(0.4f, 0.6f), Random.Range(0.8f, 1.0f));
+    //Color defaultColor;
+
     bool tof;
 
 
@@ -28,11 +29,11 @@ public class PlayerActionDrawer : PropertyDrawer
         return totalHeight;
     }
 
-    [ContextMenu("Change Color")]
-public Color SetActionColor()
-    {    
-       return Color.HSVToRGB(Random.Range(0.0f, 1.0f), Random.Range(0.4f, 0.6f), Random.Range(0.8f, 1.0f));
-    }
+//    [ContextMenu("Change Color")]
+//public Color SetActionColor()
+//    {    
+//       return Color.HSVToRGB(Random.Range(0.0f, 1.0f), Random.Range(0.4f, 0.6f), Random.Range(0.8f, 1.0f));
+//    }
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
@@ -53,13 +54,10 @@ public Color SetActionColor()
         int indentLevel = EditorGUI.indentLevel;
         EditorGUI.indentLevel = 0; 
         
-        defaultColor = GUI.color;
-        
-        
-        Rect colorbox = new Rect(position.x, position.y, 40, 20);
-        color = EditorGUI.ColorField(colorbox, color);
-     
-        GUI.color = color;
+        //defaultColor = GUI.color;
+        //Rect colorbox = new Rect(position.x, position.y, 40, 20);
+        //color = EditorGUI.ColorField(colorbox, color);
+        //GUI.color = color;
 
 
         // GUI.backgroundColor = new Color(Random.Range(0, 1), Random.Range(0, 1), Random.Range(0, 1), 1);
@@ -128,7 +126,7 @@ public Color SetActionColor()
 
         EditorGUI.EndFoldoutHeaderGroup();
 
-        GUI.color = defaultColor;
+        //GUI.color = defaultColor;
         EditorGUI.indentLevel = indentLevel;
 
         totalHeight = yValue - position.y;

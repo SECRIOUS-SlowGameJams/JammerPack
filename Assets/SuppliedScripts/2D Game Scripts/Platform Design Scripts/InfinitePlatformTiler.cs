@@ -10,7 +10,7 @@ using SECRIOUS.Utilities;
  This script assumes an orthographic camera that moves on the x-axis.
  It tiles a seamless sprite in accordance with the camera movement.
  Please place your prefab as a child of the gameObject in the appropriate position.
- It must have a SpriteRenderer Componenet attached with the desired Sprite.
+ It must have a SpriteRenderer Component attached with the desired Sprite.
  WARNING: Assign the prefab slot from the project ASSET panel, NOT from the Prefab instance in your scene.
  All subsequent sprites will be tiled on the same y and z value, with different x values.
  Optional:

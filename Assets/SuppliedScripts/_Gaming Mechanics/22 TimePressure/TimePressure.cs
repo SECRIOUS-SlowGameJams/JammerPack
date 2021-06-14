@@ -12,14 +12,15 @@ public class TimePressure : MonoBehaviour
 {
     //timecounter's duration
     public float timeCounter;
-    //current timeshot
-    public float t;
     //what to trigger when the timer's up
     public UnityEvent eventWhenTimerIsUp;
 
+    public float CurrentTime { get { return t; } }
+
     [SerializeField]
     bool isCounting;
-
+    [SerializeField]
+    float t;
     // Update is called once per frame
     void Update()
     {
