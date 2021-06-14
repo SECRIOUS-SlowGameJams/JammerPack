@@ -1,0 +1,27 @@
+title: Start
+tags: 
+colorID: 0
+position: -1168,-467
+---
+Hello!
+This is a sample dialogue using YarnSpinner.
+Would you like an introduction how to use YarnSpinner to make your own dialogues?
+[[ Please, do! | Yes]]
+[[ I already know it all | No]]
+===
+title: Yes
+tags: 
+colorID: 0
+position: -1541,-172
+---
+Alright then!
+Please visit this website to learn more:
+===
+title: No
+tags: 
+colorID: 0
+position: -1078,-26
+---
+That's great to hear! 
+Enjoy!
+===
